@@ -13,19 +13,15 @@
   text-decoration: none;
 }
 
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-li {
-  display: inline;
+.home-link,
+.menu-link {
+  margin: auto 6px;
 }
 
 .home-link {
-  margin: auto 6px;
+  flex-grow: 1;
 }
 
-.menu-link {
-  float: right;
-  margin: auto 6px;
+.nav-group {
+  display: flex;
 }

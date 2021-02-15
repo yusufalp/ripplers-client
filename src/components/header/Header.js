@@ -6,11 +6,11 @@ import GoogleAuth from '../auth/GoogleAuth';
 const Header = () => {
   return (
     <header className="App-header">
-      <ul>
-        <li className="home-link"><Link to="/">Ripplers</Link></li>
-        <li className="menu-link"><Link to="/">Streams</Link></li>
-        <li className="menu-link"><GoogleAuth /></li>
-      </ul>
+      <div className="nav-group">
+        <Link to="/" className="home-link">Ripplers</Link>
+        <Link to="/" className="menu-link">Streams</Link>
+        <GoogleAuth className="menu-link" />
+      </div>
     </header>
   );
 }

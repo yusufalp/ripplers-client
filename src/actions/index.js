@@ -48,7 +48,7 @@ export const fetchStream = (id) => {
 
 export const editStream = (id, formValues) => {
   return async (dispatch) => {
-    const response = streams.put(`/streams/${id}`, formValues);
+    const response = streams.patch(`/streams/${id}`, formValues);
     dispatch({ type: EDIT_STREAM, payload: response.data });
   };
 };

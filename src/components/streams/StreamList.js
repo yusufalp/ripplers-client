@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchStreams } from '../../actions';
+import './StreamList.css';
 
 class StreamList extends React.Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class StreamList extends React.Component {
       return (
         <div>
           <Link to={`/streams/edit/${stream.id}`}>Edit</Link>
-          <button>Delete</button>
+          <Link to={`/streams/delete/${stream.id}`}>Delete</Link>
         </div>
       )
     }
@@ -21,8 +22,8 @@ class StreamList extends React.Component {
     return this.props.streams.map(stream => {
       return (
         <div className="item" key={stream.id}>
-          <p>{stream.title}</p>
-          <p>{stream.description}</p>
+          <p>Title: {stream.title}</p>
+          <p>Description: {stream.description}</p>
           <div>{this.renderAdmin(stream)}</div>
         </div>
       )
@@ -31,7 +32,7 @@ class StreamList extends React.Component {
   renderCreate() {
     if (this.props.isSignedIn) {
       return (
-        <div>
+        <div className="create-button">
           <Link to="/streams/new">
             Create New Stream
           </Link>

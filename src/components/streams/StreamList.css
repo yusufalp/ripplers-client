@@ -1,0 +1,13 @@
+.item {
+  border: 1px solid black;
+  margin: 6px;
+  padding: 6px;
+}
+
+a {
+  margin-right: 12px;
+}
+
+.create-button {
+  margin: 6px;
+}

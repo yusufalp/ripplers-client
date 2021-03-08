@@ -8,16 +8,43 @@ class StreamShow extends React.Component {
     super(props);
     this.videoRef = React.createRef();
   }
+
   componentDidMount() {
-    this.props.fetchStream(this.props.match.params.id);
+    const { id } = this.props.match.params;
+
+    this.props.fetchStream(id);
+    this.buildPlayer();
   }
+
+  componentDidUpdate() {
+    this.buildPlayer();
+  }
+
+  componentWillUnmount() {
+    this.player.destroy();
+  }
+
+  buildPlayer() {
+    const { id } = this.props.match.params;
+
+    if (this.player || !this.props.stream) {
+      return;
+    }
+    this.player = flv.createPlayer({
+      type: 'flv',
+      url: `http://localhost:8000/live/${id}.flv`
+    });
+    this.player.attachMediaElement(this.videoRef.current);
+    this.player.load();
+  }
+
   render() {
     if (!this.props.stream) {
       return <div>...Loading</div>;
     }
     return (
       <div>
-        <video className="video-screen" ref={this.videoRef} controls style={{ width: '100%' }} />
+        <video ref={this.videoRef} style={{ width: '100%' }} controls />
         <h2>{this.props.stream.title}</h2>
         <h3>{this.props.stream.description}</h3>
       </div>
